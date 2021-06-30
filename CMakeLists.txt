@@ -74,9 +74,9 @@ if(BUILD_SHARED_LIBS)
 endif(BUILD_SHARED_LIBS)
 
 option(BUILD_APP "Build example application" ON)
-if(BUILD_APP)
-add_executable(demux src/test_demux.cpp src/test_demux.h)
-endif(BUILD_APP)
+#if(BUILD_APP)
+#add_executable(demux src/test_demux.cpp src/test_demux.h)
+#endif(BUILD_APP)
 
 set(DEPLIBS tsDemuxerStatic)
 if (WIN32)
@@ -85,9 +85,9 @@ else()
   list(APPEND DEPLIBS m pthread)
 endif()
 
-if(BUILD_APP)
+#if(BUILD_APP)
 target_link_libraries(demux ${DEPLIBS})
-endif(BUILD_APP)
+#endif(BUILD_APP)
 
 if(BUILD_SHARED_LIBS)
   install(TARGETS tsDemuxer tsDemuxerStatic
