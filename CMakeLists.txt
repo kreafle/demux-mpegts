@@ -86,7 +86,7 @@ else()
 endif()
 
 #if(BUILD_APP)
-target_link_libraries(demux ${DEPLIBS})
+#target_link_libraries(demux ${DEPLIBS})
 #endif(BUILD_APP)
 
 if(BUILD_SHARED_LIBS)
