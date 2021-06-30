@@ -75,7 +75,7 @@ set_target_properties(tsDemuxerStatic PROPERTIES OUTPUT_NAME tsDemuxer)
 #endif(BUILD_SHARED_LIBS)
 
 #CREATE AN EXECUTABLE TARGET TO BE BUILD BY THESE FILES
-#add_executable(demux src/test_demux.cpp src/test_demux.h)
+add_executable(demux src/test_demux.cpp src/test_demux.h)
 
 set(DEPLIBS tsDemuxerStatic)
 
@@ -87,9 +87,7 @@ endif()
 
 
 #BUILD AN EXECUTABLE FROM 
-#target_link_libraries(demux ${DEPLIBS})
-target_link_libraries(tsDemuxer ${DEPLIBS})
-
+target_link_libraries(demux ${DEPLIBS})
 
 
 
