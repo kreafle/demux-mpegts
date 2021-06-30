@@ -88,6 +88,8 @@ endif()
 
 #BUILD AN EXECUTABLE FROM 
 #target_link_libraries(demux ${DEPLIBS})
+target_link_libraries(tsDemuxer ${DEPLIBS})
+
 
 
 
