@@ -52,7 +52,7 @@ add_library(tsDemuxerStatic STATIC
   src/debug.cpp
   src/tsDemuxer.cpp)
 
-set_target_properties(tsDemuxerStatic PROPERTIES OUTPUT_NAME tsDemuxer)
+#set_target_properties(tsDemuxerStatic PROPERTIES OUTPUT_NAME tsDemuxer)
 
 #if(BUILD_SHARED_LIBS)
 #  add_library(tsDemuxer SHARED
@@ -87,7 +87,7 @@ endif()
 
 
 #BUILD AN EXECUTABLE FROM 
-target_link_libraries(demux ${DEPLIBS})
+#target_link_libraries(demux ${DEPLIBS})
 
 
 
