@@ -75,7 +75,8 @@ endif(BUILD_SHARED_LIBS)
 
 option(BUILD_APP "Build example application" ON)
 #if(BUILD_APP)
-add_executable(demux src/test_demux.cpp src/test_demux.h)
+#add_executable(demux src/test_demux.cpp src/test_demux.h)
+add_executable(demux)
 #endif(BUILD_APP)
 
 set(DEPLIBS tsDemuxerStatic)
