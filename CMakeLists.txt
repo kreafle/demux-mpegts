@@ -73,10 +73,10 @@ if(BUILD_SHARED_LIBS)
     SOVERSION "${GENERIC_LIB_SOVERSION}")
 endif(BUILD_SHARED_LIBS)
 
-option(BUILD_APPS "Build example application" ON)
-if(BUILD_APPS)
+option(BUILD_APP "Build example application" ON)
+if(BUILD_APP)
 add_executable(demux src/test_demux.cpp src/test_demux.h)
-endif(BUILD_APPS)
+endif(BUILD_APP)
 
 set(DEPLIBS tsDemuxerStatic)
 if (WIN32)
