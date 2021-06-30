@@ -84,7 +84,10 @@ if (WIN32)
 else()
   list(APPEND DEPLIBS m pthread)
 endif()
+
+if(BUILD_APP)
 target_link_libraries(demux ${DEPLIBS})
+endif(BUILD_APP)
 
 if(BUILD_SHARED_LIBS)
   install(TARGETS tsDemuxer tsDemuxerStatic
