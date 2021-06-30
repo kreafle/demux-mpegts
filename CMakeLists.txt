@@ -1,5 +1,12 @@
-cmake_minimum_required(VERSION 2.6 FATAL_ERROR)
-cmake_policy(VERSION 2.6)
+#cmake_minimum_required(VERSION 2.6 FATAL_ERROR)
+#cmake_policy(VERSION 2.6)
+
+if(MSVC)
+  cmake_policy(SET CMP0091 NEW)
+  cmake_minimum_required(VERSION 3.15)
+else()
+  cmake_minimum_required(VERSION 3.10)
+endif()
 
 project(tsDemuxer)
 include(GNUInstallDirs)
