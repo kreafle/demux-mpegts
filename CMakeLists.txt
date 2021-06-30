@@ -1,12 +1,5 @@
-#cmake_minimum_required(VERSION 2.6 FATAL_ERROR)
-#cmake_policy(VERSION 2.6)
-
-if(MSVC)
-  cmake_policy(SET CMP0091 NEW)
-  cmake_minimum_required(VERSION 3.15)
-else()
-  cmake_minimum_required(VERSION 3.10)
-endif()
+cmake_minimum_required(VERSION 2.6 FATAL_ERROR)
+cmake_policy(VERSION 2.6)
 
 project(tsDemuxer)
 include(GNUInstallDirs)
@@ -44,6 +37,7 @@ endif(TSDEMUX_DEBUG)
 # add targets
 set(BUILD_SHARED_LIBS OFF CACHE BOOL "Set to ON to build shared libraries")
 
+#BUILD A STATIC LIBRARY FROM THESE SOURCES
 add_library(tsDemuxerStatic STATIC
   src/elementaryStream.cpp
   src/bitstream.cpp
@@ -60,43 +54,42 @@ add_library(tsDemuxerStatic STATIC
 
 set_target_properties(tsDemuxerStatic PROPERTIES OUTPUT_NAME tsDemuxer)
 
-if(BUILD_SHARED_LIBS)
-  add_library(tsDemuxer SHARED
-    src/elementaryStream.cpp
-    src/bitstream.cpp
-    src/ES_AC3.cpp
-    src/ES_MPEGAudio.cpp
-    src/ES_Subtitle.cpp
-    src/ES_AAC.cpp
-    src/ES_h264.cpp
-    src/ES_MPEGVideo.cpp
-    src/ES_Teletext.cpp
-    src/ES_hevc.cpp
-    src/debug.cpp
-    src/tsDemuxer.cpp)
+#if(BUILD_SHARED_LIBS)
+#  add_library(tsDemuxer SHARED
+#    src/elementaryStream.cpp
+#    src/bitstream.cpp
+#    src/ES_AC3.cpp
+#    src/ES_MPEGAudio.cpp
+#    src/ES_Subtitle.cpp
+#    src/ES_AAC.cpp
+#    src/ES_h264.cpp
+#    src/ES_MPEGVideo.cpp
+#    src/ES_Teletext.cpp
+#    src/ES_hevc.cpp
+#    src/debug.cpp
+#    src/tsDemuxer.cpp)
 
-  set_target_properties(tsDemuxer PROPERTIES
-    VERSION "${GENERIC_LIB_VERSION}"
-    SOVERSION "${GENERIC_LIB_SOVERSION}")
-endif(BUILD_SHARED_LIBS)
+#  set_target_properties(tsDemuxer PROPERTIES
+#    VERSION "${GENERIC_LIB_VERSION}"
+#    SOVERSION "${GENERIC_LIB_SOVERSION}")
+#endif(BUILD_SHARED_LIBS)
 
-option(BUILD_APP "Build example application" ON)
-#if(BUILD_APP)
-#add_executable(demux src/test_demux.cpp src/test_demux.h)
+#CREATE AN EXECUTABLE TARGET TO BE BUILD BY THESE FILES
 add_executable(demux src/test_demux.cpp src/test_demux.h)
-#endif(BUILD_APP)
 
 set(DEPLIBS tsDemuxerStatic)
+
 if (WIN32)
   list(APPEND DEPLIBS ws2_32)
 else()
   list(APPEND DEPLIBS m pthread)
 endif()
 
-#if(BUILD_APP)
+
+#BUILD AN EXECUTABLE FROM 
 target_link_libraries(demux ${DEPLIBS})
 
-#endif(BUILD_APP)
+
 
 if(BUILD_SHARED_LIBS)
   install(TARGETS tsDemuxer tsDemuxerStatic
